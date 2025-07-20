@@ -39,7 +39,6 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        /* Анимация фона */
         .bg-particles {
             position: fixed;
             top: 0;
@@ -50,7 +49,6 @@
             opacity: 0.3;
         }
 
-        /* Контент */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -80,7 +78,6 @@
             padding: 0 0.5rem;
         }
 
-        /* Кнопка */
         .apply-btn {
             display: inline-block;
             background: linear-gradient(to right, var(--accent-blue), var(--glow-blue));
@@ -105,7 +102,6 @@
             box-shadow: 0 0 25px rgba(59, 130, 246, 0.8);
         }
 
-        /* Анимации */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -122,7 +118,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Особенности сервера */
         .features-container {
             min-height: 100vh;
             height: auto;
@@ -198,7 +193,6 @@
             60% { transform: translateY(-5px) translateX(-50%); }
         }
 
-        /* Секции контента (изначально скрыты) */
         .content-section {
             background: rgba(15, 23, 42, 0.7);
             border-radius: 12px;
@@ -225,7 +219,6 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Секция с игроками */
         .players-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -242,6 +235,14 @@
             border-radius: 8px;
             transition: all 0.3s ease;
             font-size: clamp(0.85rem, 3vw, 1rem);
+            overflow: hidden;
+        }
+
+        .player-card span:first-of-type {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .player-card:hover {
@@ -275,9 +276,12 @@
             opacity: 0.7;
             margin-left: auto;
             white-space: nowrap;
+            flex-shrink: 0;
+            max-width: 80px;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        /* Списки */
         ul.feature-list {
             text-align: left;
             max-width: 700px;
@@ -302,7 +306,6 @@
             top: -0.1rem;
         }
 
-        /* Футер */
         footer {
             margin-top: 4rem;
             padding: 1.5rem;
@@ -310,7 +313,6 @@
             font-size: 0.85rem;
         }
 
-        /* Адаптивность для планшетов и десктопов */
         @media (min-width: 768px) {
             .container {
                 padding: 2rem;
@@ -360,7 +362,6 @@
     </style>
 </head>
 <body>
-    <!-- Анимированные частицы -->
     <canvas class="bg-particles" id="particles"></canvas>
 
     <div class="container">
@@ -370,7 +371,6 @@
             <p>Присоединяйтесь к нашему серверу и получите уникальный опыт игры в Minecraft с активным сообществом</p>
         </header>
 
-        <!-- Три виджета на весь экран -->
         <div class="features-container">
             <div class="features">
                 <div class="feature" onclick="showSection('vanilla-section')">
@@ -394,7 +394,6 @@
             </div>
         </div>
 
-        <!-- Секция ванильного выживания -->
         <div id="vanilla-section" class="content-section">
             <h2>🌿 Ванильное выживание</h2>
             <p>Наш сервер предлагает классический опыт Minecraft без модификаций. Здесь вы сможете:</p>
@@ -410,85 +409,80 @@
             <p>Мы поддерживаем баланс и честную игру, поэтому у нас действует строгая система защиты от читов.</p>
         </div>
 
-        <!-- Секция со списком игроков -->
         <div id="players-section" class="content-section">
             <h2>👥 Активность игроков (за 3 дня)</h2>
             <p>Статус игроков на сервере за последние 72 часа:</p>
             <div class="players-grid">
-                <!-- Активные (играли сегодня) -->
                 <div class="player-card">
                     <div class="status-indicator status-active"></div>
                     <span>Maestro795</span>
-                    <span class="last-active">Был сегодня</span>
+                    <span class="last-active">1 день назад</span>
                 </div>
                 <div class="player-card">
                     <div class="status-indicator status-active"></div>
                     <span>Void</span>
-                    <span class="last-active">Был сегодня</span>
+                    <span class="last-active">1 день назад </span>
                 </div>
                 <div class="player-card">
                     <div class="status-indicator status-active"></div>
                     <span>Shvartsneggr</span>
-                    <span class="last-active">Был сегодня</span>
+                    <span class="last-active">1 день назад</span>
                 </div>
                 
-                <!-- Полуактивные (играли 1-2 дня назад) -->
                 <div class="player-card">
                     <div class="status-indicator status-semi-active"></div>
                     <span>Synist</span>
-                    <span class="last-active">2 дня назад</span>
+                    <span class="last-active">3 дня назад</span>
                 </div>
                 <div class="player-card">
                     <div class="status-indicator status-semi-active"></div>
                     <span>Kuratipa322</span>
-                    <span class="last-active">2 дня назад</span>
+                    <span class="last-active">3 дня назад</span>
                 </div>
                 
-                <!-- Неактивные (больше 3 дней) -->
                 <div class="player-card">
                     <div class="status-indicator status-inactive"></div>
                     <span>Tyhellow1</span>
-                    <span class="last-active">9 дней назад</span>
+                    <span class="last-active">10 дней назад</span>
                 </div>
                 <div class="player-card">
                     <div class="status-indicator status-inactive"></div>
                     <span>Provodnik111</span>
-                    <span class="last-active">13 дней назад</span>
+                    <span class="last-active">14 дней назад</span>
                 </div>
                 <div class="player-card">
                     <div class="status-indicator status-inactive"></div>
                     <span>JackTheRipper</span>
-                    <span class="last-active">19 дней назад</span>
+                    <span class="last-active">20 дней назад</span>
                 </div>
                 <div class="player-card">
                     <div class="status-indicator status-inactive"></div>
                     <span>Gufin_Z</span>
-                    <span class="last-active">11 дней назад</span>
+                    <span class="last-active">12 дней назад</span>
                 </div>
                 <div class="player-card">
                     <div class="status-indicator status-inactive"></div>
                     <span>Sigma777</span>
-                    <span class="last-active">19 дней назад</span>
+                    <span class="last-active">20 дней назад</span>
                 </div>
                 <div class="player-card">
                     <div class="status-indicator status-inactive"></div>
                     <span>KoGytorTime</span>
-                    <span class="last-active">9 дней назад</span>
+                    <span class="last-active">10 дней назад</span>
                 </div>
                 <div class="player-card">
                     <div class="status-indicator status-inactive"></div>
                     <span>Paroplen</span>
-                    <span class="last-active">23 дня назад</span>
+                    <span class="last-active">24 дня назад</span>
                 </div>
                 <div class="player-card">
                     <div class="status-indicator status-inactive"></div>
                     <span>Eclipse</span>
-                    <span class="last-active">10 дней назад</span>
+                    <span class="last-active">11 дней назад</span>
                 </div>
             </div>
         </div>
 
-        <!-- Секция комьюнити -->
         <div id="community-section" class="content-section">
             <h2>🏡 Наше комьюнити</h2>
             <p>Plantix 2 season - это не просто сервер, это дружная семья. У нас:</p>
@@ -504,7 +498,6 @@
             <p>Мы гордимся нашей дружелюбной атмосферой и всегда рады новым участникам!</p>
         </div>
 
-        <!-- Кнопка заявки -->
         <a href="https://forms.yandex.ru/u/6820c72649363929b6e9334d/" class="apply-btn">Подать заявку</a>
 
         <footer>
@@ -512,9 +505,7 @@
         </footer>
     </div>
 
-    <!-- Скрипты -->
     <script>
-        // Анимация частиц
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -555,37 +546,30 @@
 
         animateParticles();
 
-        // Адаптивность
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         });
 
-        // Показываем секцию при клике на виджет
         function showSection(sectionId) {
-            // Скрываем все секции
             document.querySelectorAll('.content-section').forEach(section => {
                 section.classList.remove('visible');
             });
             
-            // Показываем нужную секцию
             const section = document.getElementById(sectionId);
             section.classList.add('visible');
             
-            // Плавно скроллим к ней
             setTimeout(() => {
                 section.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 100);
         }
 
-        // Прокрутка к контенту
         function scrollToContent() {
             const firstSection = document.querySelector('.content-section');
             firstSection.classList.add('visible');
             firstSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // Показываем контент при скролле
         window.addEventListener('scroll', () => {
             const scrollPosition = window.scrollY;
             const windowHeight = window.innerHeight;
