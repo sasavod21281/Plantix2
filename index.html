@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plantix — Майнкрафт сервер с активным комьюнити</title>
     <style>
+        /* Добавляем красивый шрифт */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+        
         :root {
             --dark-blue: #0f172a;
             --mid-blue: #1e293b;
@@ -63,12 +66,43 @@
 
         h1 {
             font-size: clamp(2rem, 6vw, 3.5rem);
-            margin-bottom: 1.2rem;
+            margin-bottom: 0.5rem;
             background: linear-gradient(to right, var(--accent-blue), var(--glow-blue));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             text-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Обновлённый стиль для надписи "2 сезон" */
+        .season-badge {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--glow-blue);
+            margin-bottom: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .season-number {
+            font-size: 1.5em;
+            display: inline-block;
+            transform: translateY(-0.1em);
+            text-shadow: 0 0 8px var(--glow-blue);
+        }
+
+        .season-badge::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background: var(--glow-blue);
+            opacity: 0.7;
         }
 
         p {
@@ -367,6 +401,7 @@
     <div class="container">
         <header>
             <h1>Plantix</h1>
+            <div class="season-badge"><span class="season-number">2</span> сезон</div>
             <p>Сервер, где каждый найдет своё приключение и дружное комьюнити</p>
             <p>Присоединяйтесь к нашему серверу и получите уникальный опыт игры в Minecraft с активным сообществом</p>
         </header>
