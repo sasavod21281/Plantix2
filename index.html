@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Plantix — Майнкрафт сервер с активным комьюнити</title>
     <style>
         :root {
@@ -21,6 +21,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Arial', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -47,18 +48,18 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 1.5rem;
             text-align: center;
         }
 
         header {
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
             animation: fadeIn 1.5s ease-out;
         }
 
         h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            margin-bottom: 1.2rem;
             background: linear-gradient(to right, var(--accent-blue), var(--glow-blue));
             -webkit-background-clip: text;
             background-clip: text;
@@ -67,9 +68,10 @@
         }
 
         p {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
+            font-size: clamp(1rem, 3.5vw, 1.2rem);
+            margin-bottom: 2rem;
             opacity: 0.9;
+            padding: 0 0.5rem;
         }
 
         /* Кнопка */
@@ -77,18 +79,19 @@
             display: inline-block;
             background: linear-gradient(to right, var(--accent-blue), var(--glow-blue));
             color: white;
-            padding: 1rem 2.5rem;
+            padding: 1rem 2rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.2rem;
-            margin-top: 2rem;
-            margin-bottom: 3rem;
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            margin: 2rem 0 3rem;
             border: none;
             cursor: pointer;
             box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
             transition: all 0.3s ease;
             animation: pulse 2s infinite;
+            width: 90%;
+            max-width: 300px;
         }
 
         .apply-btn:hover {
@@ -115,62 +118,66 @@
 
         /* Особенности сервера */
         .features-container {
-            height: 100vh;
+            min-height: 100vh;
+            height: auto;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
+            padding: 1rem 0;
         }
 
         .features {
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            gap: 2.5rem;
+            gap: 1.5rem;
             width: 100%;
-            padding: 2rem;
+            padding: 1rem;
         }
 
         .feature {
             background: rgba(30, 41, 59, 0.8);
             border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 15px;
-            padding: 2.5rem;
-            width: 350px;
-            max-width: 100%;
+            border-radius: 12px;
+            padding: 1.5rem;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
             backdrop-filter: blur(5px);
             transition: all 0.3s ease;
             cursor: pointer;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
 
         .feature:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             border-color: var(--accent-blue);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
         }
 
         .feature h3 {
             color: var(--glow-blue);
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-size: clamp(1.3rem, 5vw, 1.8rem);
         }
 
         .feature p {
-            font-size: 1.1rem;
+            font-size: clamp(0.95rem, 3.5vw, 1.1rem);
             line-height: 1.6;
             margin-bottom: 0;
         }
 
         .scroll-down {
             position: absolute;
-            bottom: 50px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             animation: bounce 2s infinite;
             cursor: pointer;
-            font-size: 2rem;
+            font-size: 1.8rem;
             opacity: 0.7;
             transition: opacity 0.3s;
         }
@@ -181,16 +188,16 @@
 
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
-            40% { transform: translateY(-15px) translateX(-50%); }
-            60% { transform: translateY(-7px) translateX(-50%); }
+            40% { transform: translateY(-10px) translateX(-50%); }
+            60% { transform: translateY(-5px) translateX(-50%); }
         }
 
         /* Секции контента (изначально скрыты) */
         .content-section {
             background: rgba(15, 23, 42, 0.7);
-            border-radius: 15px;
-            padding: 3rem;
-            margin: 4rem 0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2.5rem 0;
             animation: slideUp 0.8s ease-out;
             display: none;
             opacity: 0;
@@ -203,31 +210,32 @@
         }
 
         .content-section h2 {
-            margin-bottom: 2rem;
-            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.5rem, 6vw, 2.2rem);
             color: var(--glow-blue);
         }
 
         .content-section p {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         /* Секция с игроками */
         .players-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
 
         .player-card {
             display: flex;
             align-items: center;
             gap: 0.8rem;
-            padding: 1rem;
+            padding: 0.8rem;
             background: rgba(30, 41, 59, 0.5);
             border-radius: 8px;
             transition: all 0.3s ease;
+            font-size: clamp(0.85rem, 3vw, 1rem);
         }
 
         .player-card:hover {
@@ -236,19 +244,20 @@
         }
 
         .status-indicator {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
+            flex-shrink: 0;
         }
 
         .status-active {
             background-color: var(--active-green);
-            box-shadow: 0 0 10px var(--active-green);
+            box-shadow: 0 0 8px var(--active-green);
         }
 
         .status-semi-active {
             background-color: var(--semi-active);
-            box-shadow: 0 0 10px var(--semi-active);
+            box-shadow: 0 0 8px var(--semi-active);
         }
 
         .status-inactive {
@@ -256,80 +265,90 @@
         }
 
         .last-active {
-            font-size: 0.8rem;
+            font-size: clamp(0.7rem, 2.5vw, 0.8rem);
             opacity: 0.7;
             margin-left: auto;
+            white-space: nowrap;
         }
 
         /* Списки */
         ul.feature-list {
             text-align: left;
             max-width: 700px;
-            margin: 2rem auto;
+            margin: 1.5rem auto;
             list-style-type: none;
         }
 
         ul.feature-list li {
-            margin-bottom: 1.2rem;
-            padding-left: 2rem;
+            margin-bottom: 1rem;
+            padding-left: 1.8rem;
             position: relative;
-            font-size: 1.1rem;
-            line-height: 1.6;
+            font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+            line-height: 1.5;
         }
 
         ul.feature-list li:before {
             content: "•";
             color: var(--glow-blue);
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             position: absolute;
-            left: 0;
-            top: -0.2rem;
+            left: 0.5rem;
+            top: -0.1rem;
         }
 
         /* Футер */
         footer {
-            margin-top: 6rem;
-            padding: 2rem;
+            margin-top: 4rem;
+            padding: 1.5rem;
             opacity: 0.7;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
-        /* Адаптивность */
-        @media (max-width: 1000px) {
+        /* Адаптивность для планшетов и десктопов */
+        @media (min-width: 768px) {
+            .container {
+                padding: 2rem;
+            }
+
             .features {
-                flex-direction: column;
-                align-items: center;
+                flex-direction: row;
+                gap: 2rem;
+                padding: 2rem;
             }
-            
+
             .feature {
-                width: 100%;
-                max-width: 500px;
+                padding: 2rem;
+                border-radius: 15px;
+            }
+
+            .content-section {
+                padding: 2.5rem;
+                margin: 3rem 0;
+                border-radius: 15px;
+            }
+
+            .apply-btn {
+                width: auto;
+                padding: 1rem 2.5rem;
+            }
+
+            .players-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 1.2rem;
             }
         }
 
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2.5rem;
-                margin-bottom: 1rem;
+        @media (min-width: 992px) {
+            .features {
+                gap: 2.5rem;
             }
-            
-            .feature h3 {
-                font-size: 1.5rem;
-                margin-bottom: 1rem;
+
+            .feature {
+                width: 350px;
             }
-            
-            .feature p {
-                font-size: 1rem;
-            }
-            
-            .content-section {
-                padding: 2rem 1.5rem;
-                margin: 3rem 0;
-            }
-            
-            .content-section h2 {
-                font-size: 1.8rem;
-                margin-bottom: 1.5rem;
+
+            .feature:hover {
+                transform: translateY(-10px);
             }
         }
     </style>
@@ -376,8 +395,8 @@
             <ul class="feature-list">
                 <li>Строить масштабные проекты вместе с другими игроками в полностью ванильной среде</li>
                 <li>Исследовать уникальный мир с рукотворными достопримечательностями и природными красотами</li>
-                <li>Участвовать в экономике сервера, торгуя с другими игроками через spawn</li>
-                <li>Кастомные и красивые префиксы за монету.</li>
+                <li>Участвовать в экономике сервера, торгуя с другими игроками через систему торговых площадей</li>
+                <li>Крутые кастомные префиксы.</li>
                 <li>Развивать свои навыки строительства и участвовать в ежемесячных конкурсах на лучшую постройку</li>
                 <li>Создавать свои фермы и автоматизированные системы, используя только ванильные механизмы</li>
                 <li>Принимать участие в глобальных проектах сервера, таких как мега-стройки и общественные зоны</li>
@@ -469,21 +488,21 @@
             <p>Plantix - это не просто сервер, это дружная семья. У нас:</p>
             <ul class="feature-list">
                 <li>Еженедельные ивенты и конкурсы с призами (строительные конкурсы, PvP-турниры, квесты)</li>
-                <li>Телеграмм с игроками</li>
-                <li>Достижения с наградами за активность и участие в жизни сервера</li>
-                <li>Поддержка новых игроков</li>
-                <li>Открытая экономика с алмазами</li>
+                <li>Группа телеграмм где можно общаться с игроками!</li>
+                <li>Система рейтинга и достижений с наградами за активность и участие в жизни сервера</li>
+                <li>Поддержка новых игроков (бесплатные стартовые наборы, обучающие материалы, гиды)</li>
+                <li>Открытая экономика с Алмазами</li>
                 <li>Система кланов и групповых проектов для совместной игры</li>
                 <li>Регулярные обновления и добавление нового контента по запросам игроков</li>
             </ul>
             <p>Мы гордимся нашей дружелюбной атмосферой и всегда рады новым участникам!</p>
         </div>
 
-        <!-- Кнопка заявки (ЗАМЕНИТЕ ССЫЛКУ НА СВОЮ!) -->
+        <!-- Кнопка заявки -->
         <a href="https://forms.yandex.ru/u/6820c72649363929b6e9334d/" class="apply-btn">Подать заявку</a>
 
         <footer>
-            <p>© 2025 Plantix. Все права защищены комьюнити и фанбазой.</p>
+            <p>© 2024 Plantix. Все права защищены.</p>
         </footer>
     </div>
 
@@ -496,7 +515,7 @@
         canvas.height = window.innerHeight;
 
         const particles = [];
-        const particleCount = 100;
+        const particleCount = window.innerWidth < 768 ? 50 : 100;
 
         for (let i = 0; i < particleCount; i++) {
             particles.push({
@@ -549,7 +568,7 @@
             
             // Плавно скроллим к ней
             setTimeout(() => {
-                section.scrollIntoView({ behavior: 'smooth' });
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 100);
         }
 
@@ -557,7 +576,7 @@
         function scrollToContent() {
             const firstSection = document.querySelector('.content-section');
             firstSection.classList.add('visible');
-            firstSection.scrollIntoView({ behavior: 'smooth' });
+            firstSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         // Показываем контент при скролле
@@ -572,6 +591,11 @@
                 }
             });
         });
+
+        // Оптимизация для мобильных устройств
+        document.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+        }, { passive: false });
     </script>
 </body>
 </html>
